@@ -1,0 +1,506 @@
+/* DEVICE CONSOLE */
+
+.device-console {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  align-items: start;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.device-console,
+.device-console *,
+.device-console *::before,
+.device-console *::after {
+  box-sizing: border-box;
+}
+
+.device-console__list,
+.device-console__detail {
+  min-width: 0;
+}
+
+.device-console__detail > section > h2 {
+  margin-top: 0;
+}
+
+/* SHARED CARD APPEARANCE */
+
+.device-list,
+.device-card,
+.device-history {
+  --surface: #49576c;
+  --soft: #6a7f9e;
+  --text: #c7ccd5;
+  --muted: #cecfd1;
+  --border: #dedada;
+  --hover: #34343e;
+  --accent: #d3ddee;
+  --accent-soft: #4b4f57;
+  --error-text: #992b25;
+  --error-surface: #fff0ee;
+
+  min-width: 0;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgb(15 23 42 / 5%);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.device-card {
+  margin-top: 1rem;
+  overflow: hidden;
+}
+
+.device-history {
+  margin-top: 1.5rem;
+}
+
+/* SHARED HEADERS */
+
+.device-list__header,
+.device-card__header,
+.device-history__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.device-card__header {
+  border-bottom: 1px solid var(--border);
+}
+
+.device-list__eyebrow,
+.device-card__eyebrow,
+.device-history__eyebrow {
+  margin: 0 0 0.25rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.device-list__header h1 {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+
+.device-card__header h3,
+.device-history__header h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.3rem;
+  line-height: 1.3;
+}
+
+.device-list__count,
+.device-history__count {
+  padding: 0.4rem 0.8rem;
+  color: var(--muted);
+  background: var(--soft);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* DEVICE LIST FILTERS */
+
+.device-list__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0 1.5rem 1.5rem;
+}
+
+.device-list__control {
+  display: flex;
+  flex: 1 1 9rem;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.device-list__control--search {
+  flex: 2 1 16rem;
+}
+
+.device-list__control > span {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.device-list__control input,
+.device-list__control select {
+  width: 100%;
+  min-height: 44px;
+  margin: 0;
+  padding: 0.65rem 0.8rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font: inherit;
+}
+
+.device-list__control input::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+.device-list__control input:focus-visible,
+.device-list__control select:focus-visible,
+.device-list button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* SHARED TABLE STYLES */
+
+.device-list__table-wrapper,
+.device-history__table-wrapper {
+  overflow-x: auto;
+}
+
+.device-list__table,
+.device-history__table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--text);
+  background: var(--surface);
+  font: inherit;
+  text-align: left;
+}
+
+.device-list__table th,
+.device-history__table th {
+  padding: 0.9rem 1rem;
+  color: var(--muted);
+  background: var(--soft);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.device-list__table td,
+.device-history__table td {
+  padding: 1rem;
+  color: var(--text);
+  border-top: 1px solid var(--border);
+  font-size: 0.875rem;
+  vertical-align: top;
+}
+
+.device-list__table th:first-child,
+.device-list__table td:first-child,
+.device-history__table th:first-child,
+.device-history__table td:first-child {
+  padding-left: 1.5rem;
+}
+
+.device-list__table th:last-child,
+.device-list__table td:last-child,
+.device-history__table th:last-child,
+.device-history__table td:last-child {
+  padding-right: 1.5rem;
+}
+
+/* DEVICE LIST ROWS */
+
+.device-list__table tbody tr:hover {
+  background: var(--hover);
+}
+
+.device-list__table tbody .device-list__row--selected {
+  background: var(--accent-soft);
+}
+
+.device-list__row--selected td:first-child {
+  box-shadow: inset 3px 0 var(--accent);
+}
+
+.device-list .device-list__serial {
+  min-height: 44px;
+  padding: 0.4rem 0;
+  color: var(--accent);
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.device-list__identifier,
+.device-card__identifier {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.device-list__identifier {
+  white-space: nowrap;
+}
+
+.device-list__state,
+.device-history__event {
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  color: var(--text);
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.device-list__table .device-list__date,
+.device-history__table .device-history__date {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* SHARED LOADING, ERROR, AND EMPTY STATES */
+
+.device-list__message,
+.device-history__message {
+  margin: 0;
+  padding: 0 1.5rem 1rem;
+  color: var(--muted);
+}
+
+.device-list__error,
+.device-history__error {
+  margin: 0 1.5rem 1rem;
+  padding: 1rem;
+  color: var(--error-text);
+  background: var(--error-surface);
+  border-radius: 8px;
+}
+
+.device-list__error ul,
+.device-history__error ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.device-list__empty,
+.device-history__empty {
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+}
+
+.device-list__empty p,
+.device-history__empty p {
+  margin: 0 0 0.4rem;
+  font-weight: 600;
+}
+
+.device-list__empty span,
+.device-history__empty span {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* DEVICE LIST PAGINATION */
+
+.device-list__pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.device-list__pagination > span {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.device-list__pagination strong {
+  color: var(--text);
+}
+
+.device-list__pagination button {
+  min-height: 44px;
+  padding: 0.6rem 1rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.device-list__pagination button:hover:not(:disabled) {
+  background: var(--soft);
+}
+
+.device-list__pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* DEVICE DETAILS */
+
+.device-card__state,
+.device-card__primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.7rem;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.device-card__fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 1.5rem 2rem;
+  margin: 0;
+  padding: 1.5rem;
+}
+
+.device-card__field {
+  min-width: 0;
+}
+
+.device-card__field--wide {
+  grid-column: 1 / -1;
+}
+
+.device-card__field dt {
+  margin-bottom: 0.4rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.device-card__field dd {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.device-card__imeis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.device-card__imeis li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+  padding: 0.75rem 1rem;
+  background: var(--soft);
+  border-radius: 8px;
+}
+
+/* DEVICE HISTORY */
+
+.device-history__transition {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+  min-width: 9rem;
+}
+
+.device-history__arrow {
+  color: var(--muted);
+}
+
+.device-history__email {
+  overflow-wrap: anywhere;
+}
+
+.device-list__pagination,
+.device-history__pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.device-list__pagination > span,
+.device-history__pagination > span {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.device-list__pagination strong,
+.device-history__pagination strong {
+  color: var(--text);
+}
+
+.device-list__pagination button,
+.device-history__pagination button {
+  min-height: 44px;
+  padding: 0.6rem 1rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.device-list__pagination button:hover:not(:disabled),
+.device-history__pagination button:hover:not(:disabled) {
+  background: var(--soft);
+}
+
+.device-list__pagination button:disabled,
+.device-history__pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.device-card__actions {
+  margin: 0;
+  padding: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.device-card__actions h4 {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+}
+
+.device-card__actions p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
